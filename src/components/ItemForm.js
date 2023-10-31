@@ -14,8 +14,8 @@ function ItemForm() {
     fetch(' http://localhost:4000/items', {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
-      }
+        "Content-type": "application/json",
+      },
       body: JSON.stringify(itemData),
     })
     .then((r) => r.json())

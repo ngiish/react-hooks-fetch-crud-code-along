@@ -21,6 +21,11 @@ function ShoppingList() {
     console.log("In ShoppingList:", newItem)
   }
 
+  function handleCategoryChange(category){
+    setSelectedCategory(category)
+  }
+
+
   const itemsToDisplay = items.filter((item) => {
     if (selectedCategory === "All") return true;
 

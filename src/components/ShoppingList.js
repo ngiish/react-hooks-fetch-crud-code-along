@@ -17,6 +17,10 @@ function ShoppingList() {
     setSelectedCategory(category);
   }
 
+  function handleAddItem(newItem){
+    console.log("In ShoppingList:", newItem)
+  }
+
   const itemsToDisplay = items.filter((item) => {
     if (selectedCategory === "All") return true;
 
@@ -25,7 +29,7 @@ function ShoppingList() {
 
   return (
     <div className="ShoppingList">
-      <ItemForm />
+      <ItemForm onAddItem={handleAddItem}/>
       <Filter
         category={selectedCategory}
         onCategoryChange={handleCategoryChange}

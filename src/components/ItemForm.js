@@ -11,9 +11,16 @@ function ItemForm() {
       category: category,
       isInCart: false
     }
-    console.log(itemData)
-
-  }
+    fetch(' http://localhost:4000/items', {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      }
+      body: JSON.stringify(itemData),
+    })
+    .then((r) => r.json())
+    .then((newItem) => console.log(newItem))
+    }
 
   return (
     <form className="NewItem" onSubmit={handleSubmit}>

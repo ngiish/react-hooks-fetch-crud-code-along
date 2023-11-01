@@ -3,7 +3,17 @@ import React from "react";
 function Item({ item }) {
   //Add function to handle button click
   function handleAddToCartClick() {
-    console.log("clicked item:", item)
+    fetch(`http://localhost:4000/items/${item.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        isInCart: !item.isInCart,
+      }),
+    })
+    .then((r) => r.json())
+    .then((updatedItem) => console.log(updatedItem))
   }
 
   return (

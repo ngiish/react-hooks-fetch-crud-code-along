@@ -19,6 +19,7 @@ function ItemForm({onAddItem}) {
       body: JSON.stringify(itemData),
     })
     .then((r) => r.json())
+    //call the onAddItem prop with the newItem
     .then((newItem) => onAddItem(newItem))
     }
 

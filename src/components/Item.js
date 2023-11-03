@@ -1,9 +1,10 @@
 import React from "react";
 
-function Item({ item, onUpdateItem }) {
+function Item({ item, onUpdateItem, onDeleteItem }) {
+
   //Add function to handle button click
   function handleAddToCartClick() {
-    fetch(`http://localhost:4000/items/${item.id}`, {
+    fetch(`http://localhost:3000/items/${item.id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -16,16 +17,13 @@ function Item({ item, onUpdateItem }) {
     .then((updatedItem) => onUpdateItem(updatedItem))
   }
 
-  function handleDeleteClick() {
-    console.log(item)
-  }
 
   function handleDeleteClick() {
-    fetch(`http://localhost:4000/items/${item.id}`, {
+    fetch(`http://localhost:3000/items/${item.id}`, {
       method: "DELETE",
     })
     .then((r) => r.json())
-    .then(() => console.log('deleted!'))
+    .then(() => onDeleteItem('deleted!'))
   }
 
   return (
@@ -36,7 +34,7 @@ function Item({ item, onUpdateItem }) {
       onClick={handleAddToCartClick}>
         {item.isInCart ? "Remove From" : "Add to"} Cart
       </button>
-      <button className="remove">Delete</button>
+      <button className="remove" onClick={handleDeleteClick}>Delete</button>
     </li>
   );
 }
